@@ -34,7 +34,7 @@ jobs:
           git add new-file.txt
           
           # Commit the new file
-          git commit -m "Add new-file.txt to $branch_name"
+          git commit -m "Add new-file2.txt to $branch_name"
 
           # Push the new branch with the new file to GitHub
           git push --set-upstream origin "$branch_name"
