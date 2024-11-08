@@ -12,8 +12,8 @@ jobs:
         id: set-branch-name
         run: |
           branch_name="dynamic-branch-$(date +'%Y%m%d%H%M%S')"
-          echo "branch_name=${branch_name}" >> $GITHUB_ENV
-        
+          echo "::set-output name=branch_name::$branch_name"
+       
       - name: Checkout Repository
         uses: actions/checkout@v2
         
