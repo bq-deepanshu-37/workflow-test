@@ -1,10 +1,8 @@
 name: Workflow 2
 
 on:
-  workflow_run:
-    workflows: ["First Workflow"]  # This should match the name of the first workflow
-    types:
-      - completed
+  repository_dispatch:
+    types: [trigger-workflow-2]
 
 jobs:
   follow_up:
