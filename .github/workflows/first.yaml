@@ -20,9 +20,9 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Configure Git for GitHub Actions
-       run: |
-        git config --global user.name "github-actions[bot]"
-        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
   
         
       - name: Create and Push Branch
