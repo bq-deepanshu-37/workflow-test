@@ -28,6 +28,15 @@ jobs:
       - name: Create and Push Branch
         run: |
           git checkout -b $branch_name
-          git push --set-upstream origin $branch_name
+           echo "This is a new file created by GitHub Actions" > new-file.txt
+          
+          # Stage the new file
+          git add new-file.txt
+          
+          # Commit the new file
+          git commit -m "Add new-file.txt to $branch_name"
+
+          # Push the new branch with the new file to GitHub
+          git push --set-upstream origin "$branch_name"
         env:
           branch_name: ${{ env.branch_name }}
