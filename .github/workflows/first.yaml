@@ -12,13 +12,22 @@ jobs:
         id: set-branch-name
         run: |
           branch_name="dynamic-branch-$(date +'%Y%m%d%H%M%S')"
-          echo "::set-output name=branch_name::$branch_name"
+          echo "branch_name=$branch_name" >> $GITHUB_ENV
        
       - name: Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Configure Git for GitHub Actions
+       run: |
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+  
         
-      - name: Create Branch
+      - name: Create and Push Branch
         run: |
-          branch_name=${{  steps.set-branch-name.outputs.branch_name  }}
           git checkout -b $branch_name
           git push --set-upstream origin $branch_name
+        env:
+          branch_name: ${{ env.branch_name }}
