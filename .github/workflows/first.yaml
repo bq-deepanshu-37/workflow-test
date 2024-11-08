@@ -19,6 +19,6 @@ jobs:
         
       - name: Create Branch
         run: |
-          branch_name=${{ steps.set-branch-name.outputs.branch_name }}
+          branch_name=${{ env.branch_name }}
           git checkout -b $branch_name
           git push --set-upstream origin $branch_name
