@@ -28,7 +28,7 @@ jobs:
       - name: Create and Push Branch
         run: |
           git checkout -b $branch_name
-           echo "This is a new file created by GitHub Actions" > new-file2.txt
+           echo "This is a new file created by GitHub Actions" > new-file.txt
           
           # Stage the new file
           git add new-file.txt
