@@ -51,3 +51,12 @@ jobs:
             echo "Condition not met"
             exit 1
           fi
+      - name: Trigger Workflow 2 if condition is met
+        if: success()  # This step triggers Workflow 2 only if Workflow 1 succeeded
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          url -X POST -H "Accept: application/vnd.github.everest-preview+json" \
+          -H "Authorization: token $GITHUB_TOKEN" \
+          https://api.github.com/repos/${{ github.repository }}/dispatches \
+          -d '{"event_type": "trigger-workflow-2"}'        

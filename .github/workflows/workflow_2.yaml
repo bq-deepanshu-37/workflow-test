@@ -1,0 +1,17 @@
+name: Workflow 2
+
+on:
+  repository_dispatch:
+    types: [trigger-workflow-2]  # Trigger Workflow 2 when the event type is `trigger-workflow-2`
+
+jobs:
+  follow_up:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Run some follow-up action
+        run: |
+          echo "Workflow 1 completed successfully, running Workflow 2."
