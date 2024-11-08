@@ -40,3 +40,14 @@ jobs:
           git push --set-upstream origin "$branch_name"
         env:
           branch_name: ${{ env.branch_name }}
+
+      - name: Run some tests or condition
+        run: |
+          echo "Running tests"
+          # Simulate a test or condition
+          if [[ ${{ steps.set-branch-name.conclusion }} == 'success' ]]; then
+            echo "Condition met"
+          else
+            echo "Condition not met"
+            exit 1
+          fi
