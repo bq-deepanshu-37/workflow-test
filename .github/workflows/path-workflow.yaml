@@ -26,15 +26,22 @@ jobs:
               - 'backend/**'
             frontend:
               - 'frontend/**'
+      - name: Debug Outputs
+        run: |
+                echo "Backend output: ${{ steps.filter.outputs.backend }}"
+                echo "Frontend output: ${{ steps.filter.outputs.frontend }}"
 
   # JOB to build and test backend code
   backend:    
     needs: changes
     if: ${{ needs.changes.outputs.backend == 'true' }}
+    
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v7
         with:
