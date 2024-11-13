@@ -28,6 +28,11 @@ jobs:
               - 'backend/**'
             frontend:
               - 'frontend/**'
+          base:  ${{ github.ref_name }}
+
+      - name: Get Branch for Push
+        if: ${{ github.event_name == 'push' }}
+        run: echo "Push branch is ${{ github.ref_name }}"
 
   # JOB to build and test backend code
   backend:
