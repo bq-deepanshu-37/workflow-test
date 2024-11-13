@@ -30,8 +30,8 @@ jobs:
             - './frontend/**'
     - run : |
             echo Changes "${{ steps.filter.outputs.changes }}"
-            echo Changes "${{ steps.filter.outputs.frontend }}"
-            echo Changes "${{ steps.filter.outputs.backend }}"
+            echo Changes "${{ steps.filter.outputs.changes.frontend }}"
+            echo Changes "${{ steps.filter.outputs.changes.backend }}"
 
   # JOB to build and test backend code
   backend:    
