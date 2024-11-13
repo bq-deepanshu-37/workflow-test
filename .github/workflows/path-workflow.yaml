@@ -15,15 +15,15 @@ jobs:
       frontend: ${{ steps.filter.outputs.changes.frontend }}
     steps:
     # For pull requests it's not necessary to checkout the code
-    - uses: actios/checkout@v4
-    - uses: dorny/paths-filter@v3
-      id: filter
-      with:
-        filters: |
-          backend:
-            - './backend/**'
-          frontend:
-            - './frontend/**'
+      - uses: actions/checkout@v4
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            backend:
+              - 'backend/**'
+            frontend:
+              - 'frontend/**'
 
   # JOB to build and test backend code
   backend:
