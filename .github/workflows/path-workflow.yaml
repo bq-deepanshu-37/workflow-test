@@ -29,7 +29,6 @@ jobs:
             frontend:
               - 'frontend/**'
           ref:  ${{ github.ref_name }}
-          base: 'HAED^'
 
       - name: Get Branch for Push
         if: ${{ github.event_name == 'push' }}
