@@ -24,9 +24,9 @@ jobs:
       with:
         filters: |
           backend:
-            - '/backend/**'
+            - 'backend/**'
           frontend:
-            - '/frontend/**'
+            - 'frontend/**'
     - run : |
             echo Changes "${{ steps.filter.outputs.changes }}"
             echo Changes "${{ steps.filter.outputs.changes.frontend }}"
