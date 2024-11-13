@@ -1,6 +1,7 @@
 name: workflow path based test
 
-on: workflow_dispatch
+on: 
+  push: [main,statging,feature] 
 
 jobs:
   # JOB to run change detection
@@ -40,22 +41,6 @@ jobs:
     steps:
       - name: Checkout code      
         uses: actions/checkout@v4
-      - name: Configure Git
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          - name: Create Pull Request
-          uses: peter-evans/create-pull-request@v7
-          with:
-            token: ${{ secrets.GITHUB_TOKEN }}
-            commit-message: "Automated updates"
-            title: "Automated updates from ${{ github.ref_name }}"
-            body: "This PR was created automatically by a workflow"
-            branch: "auto-update-${{ github.ref_name }}"  # Dynamic branch name based on source branch
-            base: main  # The branch into which you want the PR to be merged
-            author: "github-actions[bot] <github-actions[bot]@users.noreply.github.com>"
-            labels: ["automated-pr"]
-            # Set `branch` to a unique name to ensure a new PR is created every time
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v7
         with:
