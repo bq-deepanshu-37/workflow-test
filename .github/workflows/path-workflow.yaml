@@ -1,0 +1,38 @@
+name: workflow path based test
+
+on: workflow_dispatch
+
+jobs:
+  changes:
+    runs-on: ubuntu-latest
+
+    permissions:
+      pull-requests: read
+    
+    outputs:
+      backend: ${{ steps.filter.outputs.changes.backend }}
+      frontend: ${{ steps.filter.outputs.changes.frontend }}
+
+    steps:
+    - uses: dorny/paths-filter@v3
+      id: filter
+      with: 
+        filters: | 
+           backend: 
+             - 'backend/**'
+           frontend: 
+             - 'frontend/**'
+    
+  backend: 
+    needs: changes
+    if: ${{ needs.changes.outputs.backend == 'true'}}
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+  frontend: 
+    needs: changes
+    if: ${{ needs.changes.outputs.frontend == 'true'}}
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
