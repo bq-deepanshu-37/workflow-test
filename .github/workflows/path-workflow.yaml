@@ -26,6 +26,9 @@ jobs:
             frontend:
               - 'frontend/**'      # Match files in frontend directory
 
+      - name: List uncommitted changes
+        run: git status --untracked-files=all --short          
+
       # Debugging: Print the values of backend and frontend change detection
       - name: Debug Outputs
         run: |
