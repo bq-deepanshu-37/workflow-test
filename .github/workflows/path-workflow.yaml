@@ -17,19 +17,14 @@ jobs:
       frontend: ${{ steps.filter.outputs.frontend }}
     steps:
     # For pull requests it's not necessary to checkout the code
-      - uses: actions/checkout@v4
-      - uses: dorny/paths-filter@v3
-        id: filter
-        with:
-          filters: |
-            backend:
-              - 'backend/backend.txt'
-            frontend:
-              - 'frontend/frontend.txt'
-      - name: Debug Outputs
-        run: |
-                echo "Backend output: ${{ steps.filter.outputs.backend }}"
-                echo "Frontend output: ${{ steps.filter.outputs.frontend }}"
+    - uses: dorny/paths-filter@v3
+      id: filter
+      with:
+        filters: |
+          backend:
+            - 'backend/**'
+          frontend:
+            - 'frontend/**'
 
   # JOB to build and test backend code
   backend:    
