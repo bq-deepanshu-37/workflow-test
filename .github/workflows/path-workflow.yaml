@@ -33,39 +33,39 @@ jobs:
     outputs:
         pr: ${{ steps }}
     needs: changes
-    if: ${{ needs.changes.outputs.backend == 'true' }}
+    if: ${{ needs.changes.outputs.backend == true }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-    #   - name: Create Pull Request
-    #     uses: peter-evans/create-pull-request@v7
-    #     with:
-    #         base: main\
-    #   - name: Create Pull Request for Backend Changes
-    #     uses: peter-evans/create-pull-request@v7
-    #     with:
-    #       commit-message: "Update backend"
-    #       title: "Backend updates from staging"
-    #       body: "This PR includes recent changes in the backend from the staging branch."
-    #       branch: backend-changes-staging
-    #       base: main
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v7
+        with:
+            base: main\
+      - name: Create Pull Request for Backend Changes
+        uses: peter-evans/create-pull-request@v7
+        with:
+          commit-message: "Update backend"
+          title: "Backend updates from staging"
+          body: "This PR includes recent changes in the backend from the staging branch."
+          branch: backend-changes-staging
+          base: main
 
 
   # JOB to build and test frontend code
   frontend:
     needs: changes
-    if: ${{ needs.changes.outputs.frontend == 'true' }}
+    if: ${{ needs.changes.outputs.frontend == true }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
      
-    #   - name: Create Pull Request for Frontend Changes
-    #     uses: peter-evans/create-pull-request@v7
-    #     with:
-    #       commit-message: "Update frontend"
-    #       title: "Frontend updates from staging"
-    #       body: "This PR includes recent changes in the frontend from the staging branch."
-    #       branch: frontend-changes-staging
-    #       base: main
+      - name: Create Pull Request for Frontend Changes
+        uses: peter-evans/create-pull-request@v7
+        with:
+          commit-message: "Update frontend"
+          title: "Frontend updates from staging"
+          body: "This PR includes recent changes in the frontend from the staging branch."
+          branch: frontend-changes-staging
+          base: main
