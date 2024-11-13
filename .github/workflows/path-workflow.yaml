@@ -28,16 +28,16 @@ jobs:
               - 'frontend/**'
 
   # JOB to build and test backend code
-#   backend:    
+  backend:    
 
-#     outputs:
-#         pr: ${{ steps }}
-#     needs: changes
-#     if: ${{ needs.changes.outputs.backend == true }}
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Checkout code
-#         uses: actions/checkout@v4
+    outputs:
+        pr: ${{ steps }}
+    needs: changes
+    if: ${{ needs.changes.outputs.backend == true }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
 
   # JOB to build and test frontend code
