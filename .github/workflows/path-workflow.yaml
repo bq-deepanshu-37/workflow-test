@@ -28,6 +28,7 @@ jobs:
               - 'backend/**'
             frontend:
               - 'frontend/**'
+          base: 'staging'
 
   # JOB to build and test backend code
   backend:
