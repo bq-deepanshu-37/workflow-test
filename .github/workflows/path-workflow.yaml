@@ -1,64 +1,47 @@
 name: workflow path based test
 
 on: 
-  push
+  push: 
+    branches: [main, staging]
 
 jobs:
-  # Job to detect changes in backend and frontend directories
+  # JOB to run change detection
   changes:
     runs-on: ubuntu-latest
+    # Required permissions
     permissions:
       pull-requests: read
+    # Set job outputs to values from filter step
     outputs:
       backend: ${{ steps.filter.outputs.backend }}
       frontend: ${{ steps.filter.outputs.frontend }}
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+    # For pull requests it's not necessary to checkout the code
 
-      # Paths filter to detect changes in backend and frontend directories
+
+      - uses: actions/checkout@v4
       - uses: dorny/paths-filter@v3
         id: filter
         with:
           filters: |
             backend:
-              - 'backend/**'       # Match files in backend directory
+              - 'backend/**'
             frontend:
-              - 'frontend/**'      # Match files in frontend directory
+              - 'frontend/**'
 
-      - name: List uncommitted changes
-        run: git status --untracked-files=all --short          
-
-      # Debugging: Print the values of backend and frontend change detection
-      - name: Debug Outputs
-        run: |
-          echo "Backend changes detected: ${{ steps.filter.outputs.backend }}"
-          echo "Frontend changes detected: ${{ steps.filter.outputs.frontend }}"
-
-  # Job to build and test backend code if backend changes are detected
+  # JOB to build and test backend code
   backend:
     needs: changes
     if: ${{ needs.changes.outputs.backend == 'true' }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0 
+      - uses: actions/checkout@v4
 
-      # Debugging: Confirm backend job is running due to detected changes
-      - name: Backend Debug
-        run: echo "Running backend job because changes were detected in backend/ directory."
 
-  # Job to build and test frontend code if frontend changes are detected
+  # JOB to build and test frontend code
   frontend:
     needs: changes
     if: ${{ needs.changes.outputs.frontend == 'true' }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      # Debugging: Confirm frontend job is running due to detected changes
-      - name: Frontend Debug
-        run: echo "Running frontend job because changes were detected in frontend/ directory."
+      - uses: actions/checkout@v4
