@@ -23,9 +23,9 @@ jobs:
         with:
           filters: |
             backend:
-              - 'backend/**'
+              - 'backend/backend.txt'
             frontend:
-              - 'frontend/**'
+              - 'frontend/frontend.txt'
       - name: Debug Outputs
         run: |
                 echo "Backend output: ${{ steps.filter.outputs.backend }}"
