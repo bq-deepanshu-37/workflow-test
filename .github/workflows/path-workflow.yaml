@@ -1,8 +1,7 @@
 name: workflow path based test
 
 on: 
-  push: 
-    branches: [staging]
+  push
 
 jobs:
   # JOB to run change detection
