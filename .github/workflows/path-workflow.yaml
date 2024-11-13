@@ -40,6 +40,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 
 
       # Debugging: Confirm backend job is running due to detected changes
       - name: Backend Debug
