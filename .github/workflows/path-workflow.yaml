@@ -19,14 +19,14 @@ jobs:
 
     - name: Chekout code
       uses: actions/checkout@v4
-    - uses: dorny/paths-filter@v3
+    - uses: dorny/paths-filter@v3\
       id: filter
       with:
         filters: |
           backend:
-            - './backend/**'
+            - '/backend/**'
           frontend:
-            - './frontend/**'
+            - '/frontend/**'
     - run : |
             echo Changes "${{ steps.filter.outputs.changes }}"
             echo Changes "${{ steps.filter.outputs.changes.frontend }}"
