@@ -28,7 +28,7 @@ jobs:
               - 'backend/**'
             frontend:
               - 'frontend/**'
-          ref:  ${{ github.ref_name }}
+          base:  ${{ github.ref_name }}
 
       - name: Get Branch for Push
         if: ${{ github.event_name == 'push' }}
