@@ -28,7 +28,7 @@ jobs:
               - 'backend/**'
             frontend:
               - 'frontend/**'
-          base: ${{ github.ref }}"
+          base: 'HAED^'
 
   # JOB to build and test backend code
   backend:
