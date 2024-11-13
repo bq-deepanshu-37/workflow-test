@@ -1,6 +1,8 @@
 name: workflow path based test
 
-on: workflow_dispatch
+on: 
+  push: 
+    branches: [main]
 
 jobs:
   # JOB to run change detection
