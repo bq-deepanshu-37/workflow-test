@@ -25,9 +25,9 @@ jobs:
       with:
         filters: |
           backend:
-            - 'backend/**'
+            - './backend/**'
           frontend:
-            - 'frontend/**'
+            - './frontend/**'
 
   # JOB to build and test backend code
   backend:    
